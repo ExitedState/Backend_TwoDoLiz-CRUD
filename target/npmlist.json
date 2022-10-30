@@ -1,0 +1,1 @@
+{"version":"0.0.1","name":"todo-rest-app","dependencies":{"@nestjs/common":{"version":"9.1.4"},"@nestjs/core":{"version":"9.1.4"},"@nestjs/mongoose":{"version":"9.2.0"},"@nestjs/platform-express":{"version":"9.1.4"},"mongoose":{"version":"6.6.5"},"reflect-metadata":{"version":"0.1.13"},"rimraf":{"version":"3.0.2"},"rxjs":{"version":"7.5.7"}}}
