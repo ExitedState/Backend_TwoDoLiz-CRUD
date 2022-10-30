@@ -1,3 +1,5 @@
+/* eslint-disable prettier/prettier */
+
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
@@ -6,18 +8,18 @@ export type TodoDocument = Todo & Document;
 @Schema()
 export class Todo {
   @Prop({ require: true })
-  title: string;
+  name: string;
 
   @Prop()
-  description?: string;
+  detail: string;
 
   @Prop()
-  completedAt?: Date;
+  completedAt: Date;
 
   @Prop({ require: true })
-  createAt?: Date;
+  createAt: Date;
 
   @Prop()
-  deletedAt?: Date;
+  deletedAt: Date;
 }
 export const TodoSchema = SchemaFactory.createForClass(Todo);
