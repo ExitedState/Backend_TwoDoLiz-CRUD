@@ -21,5 +21,10 @@ export class Todo {
 
   @Prop()
   deletedAt: Date;
+
+  //default value:false
+  @Prop({ default: false })
+  is_finished: boolean;
+
 }
 export const TodoSchema = SchemaFactory.createForClass(Todo);
