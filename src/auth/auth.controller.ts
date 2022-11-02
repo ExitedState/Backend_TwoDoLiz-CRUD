@@ -5,6 +5,7 @@ import { UserDetails } from 'src/user/userDetails.interface';
 
 import { AuthService } from './auth.service';
 
+
 @Controller('auth')
 export class AuthController {
     constructor(private authService: AuthService){}

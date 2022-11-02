@@ -6,6 +6,7 @@ import { Model } from 'mongoose';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
 import { Todo, TodoDocument } from './schemas/todo.schema';
+import { User } from 'src/user/schemas/user.schema';
 
 @Injectable()
 export class TodoService {
@@ -14,17 +15,18 @@ export class TodoService {
   ) {}
 
   async findAll(): Promise<TodoDocument[]> {
-    return await this.model.find().exec();
+    return await this.model.find().populate('author').exec();
   }
 
   async findOne(id: string): Promise<TodoDocument> {
-    return await this.model.findById(id).exec();
+    return await this.model.findById(id).populate('author').exec();
   }
 
-  async create(createTodoDto: CreateTodoDto): Promise<TodoDocument> {
+  async create(createTodoDto: CreateTodoDto,author: User): Promise<TodoDocument> {
     return await new this.model({
       ...createTodoDto,
       createdAt: new Date(),
+      User,
     }).save();
   }
 
