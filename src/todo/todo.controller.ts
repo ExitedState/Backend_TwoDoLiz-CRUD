@@ -8,9 +8,11 @@ import {
   Param,
   Post,
   Put,
+  Req,
   UseGuards,
 } from '@nestjs/common';
 import { JwtGuard } from 'src/auth/guards/jwt.guard';
+import { RequestWithUser } from 'src/auth/requestWithUser.interface';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
 import { TodoDocument } from './schemas/todo.schema';
@@ -32,8 +34,8 @@ export class TodoController {
   }
 
   @Post()
-  async create(@Body() createTodoDto: CreateTodoDto) {
-    return await this.service.create(createTodoDto);
+  async create(@Body() createTodoDto: CreateTodoDto, @Req() req: RequestWithUser) {
+    return await this.service.create(createTodoDto, req.user);
   }
 
   @Put(':id')

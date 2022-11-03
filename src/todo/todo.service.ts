@@ -7,6 +7,7 @@ import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
 import { Todo, TodoDocument } from './schemas/todo.schema';
 import { User } from 'src/user/schemas/user.schema';
+import { authorize } from 'passport';
 
 @Injectable()
 export class TodoService {
@@ -22,11 +23,11 @@ export class TodoService {
     return await this.model.findById(id).populate('author').exec();
   }
 
-  async create(createTodoDto: CreateTodoDto,author: User): Promise<TodoDocument> {
+  async create(createTodoDto: CreateTodoDto, author:User): Promise<TodoDocument> {
     return await new this.model({
       ...createTodoDto,
       createdAt: new Date(),
-      User,
+      author
     }).save();
   }
 
