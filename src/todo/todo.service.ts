@@ -6,6 +6,8 @@ import { Model } from 'mongoose';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
 import { Todo, TodoDocument } from './schemas/todo.schema';
+import { User } from 'src/user/schemas/user.schema';
+import { authorize } from 'passport';
 
 @Injectable()
 export class TodoService {
@@ -13,26 +15,26 @@ export class TodoService {
     @InjectModel(Todo.name) private readonly model: Model<TodoDocument>,
   ) {}
 
-  async findAll(): Promise<Todo[]> {
-    return await this.model.find().exec();
+  async findAll(): Promise<TodoDocument[]> {
+    return await this.model.find().populate('author').exec();
   }
 
-  async findOne(id: string): Promise<Todo> {
-    return await this.model.findById(id).exec();
+  async findOne(id: string): Promise<TodoDocument> {
+    return await this.model.findById(id).populate('author').exec();
   }
 
-  async create(createTodoDto: CreateTodoDto): Promise<Todo> {
-    return await new this.model({
+  async create(createTodoDto: CreateTodoDto): Promise<TodoDocument>{
+    const createTodo = new this.model({
       ...createTodoDto,
-      createdAt: new Date(),
-    }).save();
+    });
+    return await createTodo.save();
   }
 
-  async update(id: string, updateTodoDto: UpdateTodoDto): Promise<Todo> {
-    return await this.model.findByIdAndUpdate(id, updateTodoDto).exec();
+  async update(id: string, updateTodoDto: UpdateTodoDto): Promise<TodoDocument> {
+    return await this.model.findByIdAndUpdate(id, updateTodoDto).populate('author').exec();
   }
 
-  async delete(id: string): Promise<Todo> {
-    return await this.model.findByIdAndDelete(id).exec();
+  async delete(id: string): Promise<TodoDocument> {
+    return await this.model.findByIdAndDelete(id).populate('author').exec();
   }
 }
