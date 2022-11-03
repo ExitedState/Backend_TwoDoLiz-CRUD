@@ -1,12 +1,15 @@
-import { Body, Controller,HttpCode,HttpStatus,Post } from '@nestjs/common';
+import { Body, Controller,HttpCode,HttpStatus,Post, UseGuards, UseInterceptors } from '@nestjs/common';
 import { ExistingUserDTO } from 'src/user/dto/existingUser.dto';
 import { NewUserDTO } from 'src/user/dto/newUser.dto';
+import { User } from 'src/user/schemas/user.schema';
 import { UserDetails } from 'src/user/userDetails.interface';
+import MongooseClassSerializerInterceptor from 'src/utils/mongooseClassSerializer.interceptor';
 
 import { AuthService } from './auth.service';
 
 
 @Controller('auth')
+@UseInterceptors(MongooseClassSerializerInterceptor(User))
 export class AuthController {
     constructor(private authService: AuthService){}
 

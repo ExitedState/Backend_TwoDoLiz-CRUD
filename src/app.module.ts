@@ -14,7 +14,7 @@ import config from './config/keys';
 
 
 @Module({
-  imports: [TodoModule, AuthModule,UserModule,MongooseModule.forRoot(config.mongoURI)],
+  imports: [TodoModule, AuthModule,UserModule,MongooseModule.forRoot(config.mongoURI),],
   controllers: [AppController,],
   providers: [AppService,],
 })

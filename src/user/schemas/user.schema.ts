@@ -1,13 +1,14 @@
 import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
 import { Exclude, Transform } from 'class-transformer';
-import mongoose, { Document } from 'mongoose';
+import mongoose, { Document, ObjectId } from 'mongoose';
+import { Todo } from 'src/todo/schemas/todo.schema';
 
 export type UserDocument = User & Document;
 
 @Schema()
 export class User{
     @Transform(({value}) => value.toString())
-    _id: string;
+    _id: ObjectId;
 
     @Prop({required: true})
     name: string;
@@ -21,3 +22,4 @@ export class User{
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
+

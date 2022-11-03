@@ -19,6 +19,7 @@ import { TodoDocument } from './schemas/todo.schema';
 import { TodoService } from './todo.service';
 
 @Controller('todo')
+
 export class TodoController {
   constructor(private readonly service: TodoService) {}
 
@@ -34,8 +35,8 @@ export class TodoController {
   }
 
   @Post()
-  async create(@Body() createTodoDto: CreateTodoDto, @Req() req: RequestWithUser) {
-    return await this.service.create(createTodoDto, req.user);
+  async create(@Body() createTodoDto: CreateTodoDto) {
+    return await this.service.create(createTodoDto);
   }
 
   @Put(':id')

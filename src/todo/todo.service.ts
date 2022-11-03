@@ -23,19 +23,18 @@ export class TodoService {
     return await this.model.findById(id).populate('author').exec();
   }
 
-  async create(createTodoDto: CreateTodoDto, author:User): Promise<TodoDocument> {
-    return await new this.model({
+  async create(createTodoDto: CreateTodoDto): Promise<TodoDocument>{
+    const createTodo = new this.model({
       ...createTodoDto,
-      createdAt: new Date(),
-      author
-    }).save();
+    });
+    return await createTodo.save();
   }
 
   async update(id: string, updateTodoDto: UpdateTodoDto): Promise<TodoDocument> {
-    return await this.model.findByIdAndUpdate(id, updateTodoDto).exec();
+    return await this.model.findByIdAndUpdate(id, updateTodoDto).populate('author').exec();
   }
 
   async delete(id: string): Promise<TodoDocument> {
-    return await this.model.findByIdAndDelete(id).exec();
+    return await this.model.findByIdAndDelete(id).populate('author').exec();
   }
 }

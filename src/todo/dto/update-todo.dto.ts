@@ -16,3 +16,4 @@ export class UpdateTodoDto extends BaseTodoDto {
   author:User;
 }
 
+export default UpdateTodoDto;

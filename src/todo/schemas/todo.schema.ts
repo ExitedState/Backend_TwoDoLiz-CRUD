@@ -33,7 +33,7 @@ export class Todo {
   @Prop({ default: false })
   is_finished: boolean;
 
-  @Prop({type:mongoose.Schema.Types.ObjectId, ref: User.name})
+  @Prop({type:mongoose.Schema.Types.ObjectId, ref: 'User'})
   @Type(() =>User)
   author: User;
 
