@@ -4,10 +4,10 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TodoModule } from './todo/todo.module';
+import { TasksModule } from './tasks/tasks.module';
 
 @Module({
-  imports: [MongooseModule.forRoot('mongodb://localhost/todo'), TodoModule],
+  imports: [MongooseModule.forRoot('mongodb://localhost/todo'), TasksModule],
   controllers: [AppController],
   providers: [AppService],
 })
