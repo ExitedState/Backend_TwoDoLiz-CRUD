@@ -1,7 +1,7 @@
 export class CreateTaskDto {
   title: string;
-  completed: boolean;
   detail: string;
+  completed: boolean;
   completedAt: Date;
   tag: string;
 }

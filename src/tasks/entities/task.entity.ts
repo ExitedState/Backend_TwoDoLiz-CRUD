@@ -12,10 +12,10 @@ export class Task {
   @Prop({ required: true })
   title: string;
 
-  @Prop({ required: true })
+  @Prop({ required: false, default: false })
   completed: boolean;
 
-  @Prop({ required: false, default: '' })
+  @Prop({ required: false, default: null })
   detail: string;
 
   @Prop({ required: false, default: null })

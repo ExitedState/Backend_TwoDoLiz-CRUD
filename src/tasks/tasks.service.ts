@@ -39,16 +39,4 @@ export class TasksService {
     }
     return deletedTask;
   }
-
-  async sortDate() {
-    return await this.taskModel.find().sort({ completedAt: 1 }).exec();
-  }
-
-  async sortTitle() {
-    return await this.taskModel.find().sort({ title: 1 }).exec();
-  }
-
-  async sortTag() {
-    return await this.taskModel.find().sort({ tag: 1 }).exec();
-  }
 }
