@@ -1,5 +1,5 @@
-export interface UserDetails{
-    id: string;
-    name: string;
-    email: string;
+export interface UserDetails {
+  id: string;
+  name: string;
+  email: string;
 }
