@@ -19,9 +19,10 @@ export class TasksService {
     return await this.taskModel
       .find()
       .collation({ locale: 'th', caseFirst: 'upper' })
-      .sort({ completedAt: -1 })
-      .sort({ completed: 1 })
+      .sort({ hasCompletedDate: -1, completedAt: 1 })
+      // .sort({ completed: 1 })
       .sort({ title: 1 })
+      // .sort({ hasCompletedDate: 1 })
       .exec();
     // return await this.taskModel.find().exec();
   }
@@ -46,5 +47,9 @@ export class TasksService {
       throw new NotFoundException(`Task with id ${id} not found`);
     }
     return deletedTask;
+  }
+
+  async removeAll() {
+    return await this.taskModel.deleteMany().exec();
   }
 }

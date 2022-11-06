@@ -4,4 +4,5 @@ export class CreateTaskDto {
   completed: boolean;
   completedAt: Date;
   tag: string;
+  hasCompletedDate: boolean;
 }
