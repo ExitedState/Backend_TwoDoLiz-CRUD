@@ -7,7 +7,12 @@ import { AppService } from './app.service';
 import { TasksModule } from './tasks/tasks.module';
 
 @Module({
-  imports: [MongooseModule.forRoot('mongodb://localhost/todo'), TasksModule],
+  imports: [
+    MongooseModule.forRoot(
+      'mongodb+srv://Phaiboon:aZSPTaCvZJbXYn4S@twodoliz.6kgekzb.mongodb.net/?retryWrites=true&w=majority',
+    ),
+    TasksModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
