@@ -15,7 +15,15 @@ export class TasksService {
   }
 
   async findAll() {
-    return await this.taskModel.find().exec();
+    //sorted
+    return await this.taskModel
+      .find()
+      .collation({ locale: 'th', caseFirst: 'upper' })
+      .sort({ completedAt: -1 })
+      .sort({ completed: 1 })
+      .sort({ title: 1 })
+      .exec();
+    // return await this.taskModel.find().exec();
   }
 
   async findOne(id: string) {
