@@ -10,10 +10,9 @@ import { Task, TaskDocument } from './entities/task.entity';
 export class TasksService {
   constructor(@InjectModel(Task.name) private taskModel: Model<TaskDocument>) {}
 
-  async create(createTaskDto: CreateTaskDto, author: User) {
+  async create(createTaskDto: CreateTaskDto) {
     const createdTask = new this.taskModel({
       ...createTaskDto,
-      author,
     });
     return await createdTask.save();
   }
@@ -33,7 +32,7 @@ export class TasksService {
   }
 
   async findOne(id: string) {
-    return await this.taskModel.findById(id).exec();
+    return await this.taskModel.findById(id).populate('author').exec();
   }
 
   async update(id: string, updateTaskDto: UpdateTaskDto) {
