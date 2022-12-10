@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { User } from 'src/user/user.schema';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 import { Task, TaskDocument } from './entities/task.entity';
@@ -9,8 +10,11 @@ import { Task, TaskDocument } from './entities/task.entity';
 export class TasksService {
   constructor(@InjectModel(Task.name) private taskModel: Model<TaskDocument>) {}
 
-  async create(createTaskDto: CreateTaskDto) {
-    const createdTask = new this.taskModel(createTaskDto);
+  async create(createTaskDto: CreateTaskDto, author: User) {
+    const createdTask = new this.taskModel({
+      ...createTaskDto,
+      author,
+    });
     return await createdTask.save();
   }
 
@@ -23,6 +27,7 @@ export class TasksService {
       // .sort({ completed: 1 })
       .sort({ title: 1 })
       // .sort({ hasCompletedDate: 1 })
+      .populate('author')
       .exec();
     // return await this.taskModel.find().exec();
   }

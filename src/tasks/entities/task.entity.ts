@@ -1,5 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Transform, Type } from 'class-transformer';
+import mongoose, { Document, ObjectId } from 'mongoose';
+import { User } from 'src/user/user.schema';
 
 export type TaskDocument = Task & Document;
 @Schema({
@@ -9,6 +11,9 @@ export type TaskDocument = Task & Document;
   },
 })
 export class Task {
+  @Transform(({value}) => value.toString())
+  _id: ObjectId;
+
   @Prop({ required: true })
   title: string;
 
@@ -26,6 +31,10 @@ export class Task {
 
   @Prop({ required: false })
   hasCompletedDate: boolean;
+
+  @Prop({type: mongoose.Schema.Types.ObjectId,ref: User.name})
+  @Type(() => User)
+  author: User;
 }
 
 const TaskSchema = SchemaFactory.createForClass(Task);
