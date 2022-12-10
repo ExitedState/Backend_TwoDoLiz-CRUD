@@ -7,12 +7,12 @@ export type UserDocument = User & Document;
 
 @Schema()
 export class User {
-  @Transform(({value}) => value.toString())
-  _id:string;
+  @Transform(({ value }) => value.toString())
+  _id: string;
 
   @Prop({ required: true })
   name: string;
-  
+
   @Prop({ required: true, unique: true })
   email: string;
 

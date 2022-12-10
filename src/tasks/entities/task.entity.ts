@@ -11,7 +11,7 @@ export type TaskDocument = Task & Document;
   },
 })
 export class Task {
-  @Transform(({value}) =>value.toString())
+  @Transform(({ value }) => value.toString())
   _id: ObjectId;
 
   @Prop({ required: true })
@@ -32,7 +32,7 @@ export class Task {
   @Prop({ required: false })
   hasCompletedDate: boolean;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User'})
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
   @Type(() => User)
   author: User;
 }

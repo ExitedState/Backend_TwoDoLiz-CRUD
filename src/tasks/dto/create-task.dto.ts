@@ -1,8 +1,8 @@
-import { Prop } from "@nestjs/mongoose";
-import mongoose from "mongoose";
-import { User } from "src/user/user.schema";
+import { Prop } from '@nestjs/mongoose';
+import mongoose from 'mongoose';
+import { User } from 'src/user/user.schema';
 import { IsNotEmpty, IsOptional } from 'class-validator';
-import { Exclude } from "class-transformer";
+import { Exclude } from 'class-transformer';
 
 export class CreateTaskDto {
   title: string;
@@ -12,10 +12,10 @@ export class CreateTaskDto {
   tag: string;
   hasCompletedDate: boolean;
 
-  @Prop({type:mongoose.Schema.Types.ObjectId, ref:'User'})
-    author: User;
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
+  author: User;
 
   @IsOptional()
   @Exclude()
-    _id: string;
+  _id: string;
 }
