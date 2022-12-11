@@ -1,7 +1,7 @@
 import { Prop } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
 import { User } from 'src/user/user.schema';
-import { IsNotEmpty, IsOptional } from 'class-validator';
+import { IsOptional } from 'class-validator';
 import { Exclude } from 'class-transformer';
 
 export class CreateTaskDto {
