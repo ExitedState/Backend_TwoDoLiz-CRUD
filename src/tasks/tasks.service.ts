@@ -56,4 +56,24 @@ export class TasksService {
   async removeAll() {
     return await this.taskModel.deleteMany().exec();
   }
+
+  async findAllCompleted() {
+    return await this.taskModel
+      .find({ completed: true })
+      .collation({ locale: 'th', caseFirst: 'upper' })
+      .sort({ hasCompletedDate: -1, completedAt: 1 })
+      .sort({ title: 1 })
+      .populate('author')
+      .exec();
+  }
+
+  async findAllNotCompleted() {
+    return await this.taskModel
+      .find({ completed: false })
+      .collation({ locale: 'th', caseFirst: 'upper' })
+      .sort({ hasCompletedDate: -1, completedAt: 1 })
+      .sort({ title: 1 })
+      .populate('author')
+      .exec();
+  }
 }
