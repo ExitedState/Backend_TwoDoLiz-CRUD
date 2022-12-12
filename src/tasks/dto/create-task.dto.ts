@@ -10,6 +10,8 @@ export class CreateTaskDto {
   completed: boolean;
   completedAt: Date;
   tag: string;
+
+  @Prop({ default: false })
   hasCompletedDate: boolean;
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
