@@ -21,7 +21,7 @@ $ npm install
 ```
 
 ## Running the app
-
+ 
 ```bash
 # development
 $ npm run start
@@ -32,3 +32,4 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+Feel free to explore my team's repository for the frontend portion: https://github.com/Phukyada/Twodoliz-Front
